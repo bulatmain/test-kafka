@@ -2,12 +2,9 @@ name: Docker Build and Publish
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'Dockerfile-consumer'
-      - 'consumer.py'
-
+    tags:
+      - "v*.*.*"
+      
 jobs:
   build-and-publish-consumer:
     runs-on: ubuntu-latest
@@ -24,10 +21,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Get the latest tag
+      id: tag
+      run: echo "::set-output name=TAG::$(git describe --abbrev=0 --tags)"
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
         context: .
         file: Dockerfile-consumer
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.CONSUMER_REPOSITORY_NAME }}:${{ github.sha }}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.CONSUMER_REPOSITORY_NAME }}:${{ steps.tag.outputs.TAG }}
