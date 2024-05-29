@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kafka-consumer
+spec:
+  containers:
+  - name: consumer
+    image: su9denly/my-consumer:latest
+    env:
+    - name: KAFKA_BOOTSTRAP_SERVER
+      value: "kafka-0.kafka.default.svc.cluster.local:9092"
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: kafka-consumer
+# spec:
+#   containers:
+#   - name: consumer
+#     image: su9denly/my-consumer:latest
+#     ports:
+#     - containerPort: 8080
+#     env:
+#     - name: KAFKA_BOOTSTRAP_SERVER
+#       value: "kafka:9092"
