@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - 'producer/Dockerfile'
-      - 'producer/producer.py'
+      - 'Dockerfile-producer'
+      - 'producer.py'
 
 jobs:
-  build-and-publish-consumer:
+  build-and-publish-producer:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -36,6 +36,6 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: consumer/Dockerfile
+        file: Dockerfile-producer
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.PRODUCER_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}

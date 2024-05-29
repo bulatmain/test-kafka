@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'consumer/Dockerfile'
-      - 'consumer/consumer.py'
+      - 'Dockerfile-consumer'
+      - 'consumer.py'
 
 jobs:
   build-and-publish-consumer:
@@ -36,6 +36,6 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: consumer/Dockerfile
+        file: Dockerfile-consumer
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.CONSUMER_REPOSITORY_NAME }}:${{ env.IMAGE_TAG }}
