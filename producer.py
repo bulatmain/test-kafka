@@ -8,7 +8,7 @@ print('producer!')
 
 # Configuration for Kafka Producer
 # kafka_bootstrap_server = os.environ.get('KAFKA_BOOTSTRAP_SERVER')
-kafka_bootstrap_server = 'broker:9092'
+kafka_bootstrap_server = 'my-cluster-kafka-bootstrap:9092'
 topic_name = 'test-topic'        # Replace with your Kafka topic
 
 # Create an instance of the Kafka producer
