@@ -1,6 +1,7 @@
 from kafka import KafkaProducer
 import json
 import time
+import os
 
 # Configuration for Kafka Producer
 # Получение адреса Kafka из переменной окружения
@@ -9,7 +10,7 @@ topic_name = 'test-topic'        # Replace with your Kafka topic
 
 # Create an instance of the Kafka producer
 producer = KafkaProducer(
-    bootstrap_servers=kafka_server,
+    bootstrap_servers=kafka_bootstrap_server,
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
