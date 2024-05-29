@@ -22,3 +22,4 @@ print("Ha-ha-ha")
 # Получение сообщений
 for message in consumer:
     print(f"Received message: {message.value}")
+ 

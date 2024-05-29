@@ -2,7 +2,7 @@ import os
 import json
 import time
 from kafka import KafkaProducer
-
+ 
 # Получение адреса Kafka из переменной окружения
 kafka_bootstrap_server = os.environ.get('KAFKA_BOOTSTRAP_SERVER')
 
