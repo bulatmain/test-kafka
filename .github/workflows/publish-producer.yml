@@ -29,4 +29,4 @@ jobs:
           context: .
           file: ./Dockerfile-producer
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PRODUCER_DOCKERHUB_REPOSITORY }}:${{ steps.tag.outputs.TAG }}  
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PRODUCER_REPOSITORY_NAME }}:${{ steps.tag.outputs.TAG }}  

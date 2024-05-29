@@ -29,4 +29,4 @@ jobs:
           context: .
           file: ./Dockerfile-consumer
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.CONSUMER_DOCKERHUB_REPOSITORY }}:${{ steps.tag.outputs.TAG }}  
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.CONSUMER_REPOSITORY_NAME }}:${{ steps.tag.outputs.TAG }}  
