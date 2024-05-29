@@ -17,6 +17,8 @@ consumer = KafkaConsumer(
     value_deserializer=lambda x: json.loads(x.decode('utf-8'))
 )
 
+print("Ha-ha-ha")
+
 # Получение сообщений
 for message in consumer:
     print(f"Received message: {message.value}")
