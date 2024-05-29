@@ -1,28 +1,24 @@
-import os
+from kafka import KafkaProducer
 import json
 import time
-from kafka import KafkaProducer
- 
+
+# Configuration for Kafka Producer
 # Получение адреса Kafka из переменной окружения
 kafka_bootstrap_server = os.environ.get('KAFKA_BOOTSTRAP_SERVER')
+topic_name = 'test-topic'        # Replace with your Kafka topic
 
-if not kafka_bootstrap_server:
-    raise ValueError("KAFKA_BOOTSTRAP_SERVER environment variable not set")
-
-# Настройка Kafka Producer
+# Create an instance of the Kafka producer
 producer = KafkaProducer(
-    bootstrap_servers=[kafka_bootstrap_server],
+    bootstrap_servers=kafka_server,
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
-# Отправка сообщений каждые две секунды
-topic = 'test_topic'
-while True:
-    message = {'key': 'value'}
-    future = producer.send(topic, value=message)
-    try:
-        record_metadata = future.get(timeout=10)
-        print(f"Message delivered to {record_metadata.topic} [{record_metadata.partition}]")
-    except Exception as e:
-        print(f"Message delivery failed: {e}")
-    time.sleep(2)
+# Send a message
+message = {"text": "Hello, Consumer!"}
+producer.send(topic_name, message)
+producer.flush()  # Ensure all messages are sent
+
+print(f"Sent message to topic '{topic_name}': {message}")
+
+# Close the producer connection
+producer.close()
